@@ -296,9 +296,9 @@ static void set_environment_info(retro_environment_t cb)
 
 	static const retro_variable vars[] = {
 		{ "bsnes_blur_emulation", "Blur emulation; OFF|ON" },
-      { "bsnes_cpu_overclock", "CPU Overclocking; 100|110|120|130|140|150|160|170|180|190|200|10|20|30|40|50|60|70|80|90" },
-      { "bsnes_sa1_overclock", "SA1 Coprocessor Overclocking; 100|110|120|130|140|150|160|170|180|190|200|10|20|30|40|50|60|70|80|90" },
-      { "bsnes_sfx_overclock", "SuperFX Coprocessor Overclocking; 100|110|120|130|140|150|160|170|180|190|200|10|20|30|40|50|60|70|80|90" },
+		{ "bsnes_cpu_overclock", "CPU Overclocking; 100|110|120|130|140|150|160|170|180|190|200|220|240|260|280|300|320|340|360|380|400|10|20|30|40|50|60|70|80|90" },
+		{ "bsnes_sa1_overclock", "SA1 Coprocessor Overclocking; 100|110|120|130|140|150|160|170|180|190|200|220|240|260|280|300|320|340|360|380|400|10|20|30|40|50|60|70|80|90" },
+		{ "bsnes_sfx_overclock", "SuperFX Coprocessor Overclocking; 100|110|120|130|140|150|160|170|180|190|200|250|300|350|400|450|500|550|600|650|700|750|800|10|20|30|40|50|60|70|80|90" },
 		{ "bsnes_ppu_fast", "PPU Fast mode; ON|OFF" },
 		{ "bsnes_ppu_deinterlace", "PPU Deinterlace; ON|OFF" },
 		{ "bsnes_ppu_no_sprite_limit", "PPU No sprite limit; OFF|ON" },
