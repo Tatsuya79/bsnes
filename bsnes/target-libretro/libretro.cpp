@@ -459,12 +459,12 @@ RETRO_API bool retro_load_game(const retro_game_info *game)
 
 	emulator->configure("Audio/Frequency", 48000);
 
-	flush_variables();
-
 	// turn into core options later
 	emulator->configure("Hacks/CPU/Overclock", 100);
 	emulator->configure("Hacks/SA1/Overclock", 100);
 	emulator->configure("Hacks/SuperFX/Overclock", 100);
+
+	flush_variables();
 
 	program->load();
 
