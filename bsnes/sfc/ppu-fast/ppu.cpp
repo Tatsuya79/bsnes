@@ -28,6 +28,7 @@ auto PPU::hdScale() const -> uint { return configuration.hacks.ppu.mode7.scale; 
 auto PPU::hdPerspective() const -> bool { return configuration.hacks.ppu.mode7.perspective; }
 auto PPU::hdSupersample() const -> bool { return configuration.hacks.ppu.mode7.supersample; }
 auto PPU::hdMosaic() const -> bool { return configuration.hacks.ppu.mode7.mosaic; }
+auto PPUfast::widescreen() const -> int { return configuration.hacks.ppu.mode7.widescreen ? 64 : 0; } // 64 / 0 #widescreenextension
 auto PPU::deinterlace() const -> bool { return configuration.hacks.ppu.deinterlace; }
 auto PPU::renderCycle() const -> uint { return configuration.hacks.ppu.renderCycle; }
 #define ppu ppufast
@@ -112,7 +113,7 @@ auto PPU::scanline() -> void {
 
   if(vcounter() > 0 && vcounter() < vdisp()) {
     latch.hires |= io.pseudoHires || io.bgMode == 5 || io.bgMode == 6;
-    latch.hd |= io.bgMode == 7 && hdScale() > 1 && hdSupersample() == 0;
+    latch.hd |= /*io.bgMode == 7 &&*/ hdScale() > 1 && hdSupersample() == 0; //deactivated dynamic scale switching for widescreen
     latch.ss |= io.bgMode == 7 && hdScale() > 1 && hdSupersample() == 1;
   }
 
@@ -136,8 +137,9 @@ auto PPU::refresh() -> void {
       width  = 256 << hires();
       height = 240 << interlace();
     } else {
-      pitch  = 256 * hdScale();
-      width  = 256 * hdScale();
+      if(!overscan()) output -= 7 * (256+2*widescreen()) * hdScale() * hdScale();
+      pitch  = (256+2*widescreen()) * hdScale();
+      width  = (256+2*widescreen()) * hdScale();
       height = 240 * hdScale();
     }
 

@@ -18,6 +18,7 @@ struct PPU : PPUcounter {
   alwaysinline auto hdPerspective() const -> bool;
   alwaysinline auto hdSupersample() const -> bool;
   alwaysinline auto hdMosaic() const -> bool;
+  alwaysinline auto widescreen() const -> int;
   alwaysinline auto deinterlace() const -> bool;
   alwaysinline auto renderCycle() const -> uint;
 
