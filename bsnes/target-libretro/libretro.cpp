@@ -25,6 +25,27 @@ static void flush_variables()
 			emulator->configure("Video/BlurEmulation", false);
 	}
 
+	variable = { "bsnes_cpu_overclock", nullptr };
+	if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &variable) && variable.value)
+   {
+      int val = atoi(variable.value);
+      emulator->configure("Hacks/CPU/Overclock", val);
+   }
+
+	variable = { "bsnes_cpu_sa1_overclock", nullptr };
+	if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &variable) && variable.value)
+   {
+      int val = atoi(variable.value);
+      emulator->configure("Hacks/SA1/Overclock", val);
+   }
+
+	variable = { "bsnes_cpu_sfx_overclock", nullptr };
+	if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &variable) && variable.value)
+   {
+      int val = atoi(variable.value);
+      emulator->configure("Hacks/SuperFX/Overclock", val);
+   }
+
 	variable = { "bsnes_ppu_fast", nullptr };
 	if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &variable) && variable.value)
 	{
@@ -275,6 +296,9 @@ static void set_environment_info(retro_environment_t cb)
 
 	static const retro_variable vars[] = {
 		{ "bsnes_blur_emulation", "Blur emulation; OFF|ON" },
+      { "bsnes_cpu_overclock", "CPU Overclocking; 100|110|120|130|140|150|160|170|180|190|200|10|20|30|40|50|60|70|80|90" },
+      { "bsnes_sa1_overclock", "SA1 Coprocessor Overclocking; 100|110|120|130|140|150|160|170|180|190|200|10|20|30|40|50|60|70|80|90" },
+      { "bsnes_sfx_overclock", "SuperFX Coprocessor Overclocking; 100|110|120|130|140|150|160|170|180|190|200|10|20|30|40|50|60|70|80|90" },
 		{ "bsnes_ppu_fast", "PPU Fast mode; ON|OFF" },
 		{ "bsnes_ppu_deinterlace", "PPU Deinterlace; ON|OFF" },
 		{ "bsnes_ppu_no_sprite_limit", "PPU No sprite limit; OFF|ON" },
